@@ -115,6 +115,13 @@ public class Steps {
         Assertions.assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
 
+    @Then("Message is {string}")
+    public void message_is(String expectedMessage) {
+       String messageXPath = "/html/body/div[1]/div[3]/div/div/h45";
+       WebElement messageElement = driver.findElement(By.xpath(messageXPath));
+       Assertions.assertEquals(expectedMessage, messageElement.getText());
+    }
+
     @After
     public void close_driver(){
         driver.close();
