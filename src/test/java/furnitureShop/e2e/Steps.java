@@ -4,6 +4,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -49,18 +50,31 @@ public class Steps {
         searchBar.sendKeys(text);
     }
 
-    @Then("Click search button")
+    @When("Click search button")
     public void click_search_button() {
         String searchButtonXPath = "/html/body/div[2]/nav[1]/div[1]/ul/li/form/button";
         WebElement searchButton = driver.findElement(By.xpath(searchButtonXPath));
         searchButton.click();
     }
 
-    @Then("Wait {int} milliseconds")
+    @When("Click {string} button from navigation bar")
+    public void click_button_from_navigation_bar(String buttonName) {
+        WebElement button = findNavBarButtonByName(buttonName);
+        button.click();
+    }
+
+    @When("Select {string} from dropdown from {string} navigation bar button")
+    public void select_from_dropdown_from_navigation_bar_button(String furnitureCategoryName, String roomCategoryName) {
+        WebElement roomCategory = findNavBarButtonByName(roomCategoryName);
+        String furnitureCategoryXPath = "//a[contains(text(),'"+furnitureCategoryName+"')]";
+        WebElement furnitureCategory = roomCategory.findElement(By.xpath(furnitureCategoryXPath));
+        furnitureCategory.click();
+    }
+
+    @When("Wait {int} milliseconds")
     public void wait_milliseconds(Integer time) throws InterruptedException {
         Thread.sleep(time);
     }
-
 
     @Then("Displayed text is {string}")
     public void displayed_text_is(String expectedText) {
@@ -72,5 +86,10 @@ public class Steps {
     @After
     public void close_driver(){
         driver.close();
+    }
+
+    private WebElement findNavBarButtonByName(String name){
+        String buttonXPath =  "/html/body/div[2]/nav[2]/div[2]/ul/li/a[contains(text(),'"+name+"')]";
+        return driver.findElement(By.xpath(buttonXPath));
     }
 }

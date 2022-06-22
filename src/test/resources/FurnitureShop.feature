@@ -9,6 +9,36 @@ Feature: Furniture Shop Smoke Tests
   @SmokeTest
   Scenario: Search random product using search bar
     When Type "Szafa" in search bar
-    When Click search button
-    When Wait 2000 milliseconds
+    And Click search button
+    And Wait 2000 milliseconds
     Then Displayed text is "Wynik wyszukiwania dla: Szafa"
+
+  @SmokeTest
+  Scenario: Select kitchen chairs from navigation bar
+    When Click "Kuchnia" button from navigation bar
+    And Select "Krzesła" from dropdown from "Kuchnia" navigation bar button
+    When Wait 2000 milliseconds
+
+  @SmokeTest
+  Scenario: Select kitchen tables from navigation bar
+    When Click "Kuchnia" button from navigation bar
+    And Select "Stoły" from dropdown from "Kuchnia" navigation bar button
+    When Wait 2000 milliseconds
+
+  @SmokeTest
+  Scenario: Select kitchen wardrobes from navigation bar
+    When Click "Kuchnia" button from navigation bar
+    And Select "Szafki" from dropdown from "Kuchnia" navigation bar button
+    When Wait 2000 milliseconds
+
+  @SmokeTest
+  Scenario: Select kitchen worktops from navigation bar
+    When Click "Kuchnia" button from navigation bar
+    And Select "Blaty" from dropdown from "Kuchnia" navigation bar button
+    When Wait 2000 milliseconds
+
+  @SmokeTest
+  Scenario: Select living room wardrobe from navigation bar
+    When Click "Salon" button from navigation bar
+    And Select "Szafy" from dropdown from "Salon" navigation bar button
+    When Wait 2000 milliseconds
