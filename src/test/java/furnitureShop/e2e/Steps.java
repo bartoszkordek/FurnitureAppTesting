@@ -84,6 +84,12 @@ public class Steps {
         icon.click();
     }
 
+    @When("Click Basket button")
+    public void click_Basket_button() {
+        String basketCssSelector = "i[title='Koszyk']";
+        WebElement basketElement = driver.findElement(By.cssSelector(basketCssSelector));
+        basketElement.click();
+    }
 
     @When("Wait {int} milliseconds")
     public void wait_milliseconds(Integer time) throws InterruptedException {
