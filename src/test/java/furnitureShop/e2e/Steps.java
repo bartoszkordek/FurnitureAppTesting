@@ -57,18 +57,24 @@ public class Steps {
         searchButton.click();
     }
 
-    @When("Click {string} button from navigation bar")
-    public void click_button_from_navigation_bar(String buttonName) {
-        WebElement button = findNavBarButtonByName(buttonName);
+    @When("Click {string} button from left navigation bar")
+    public void click_button_from_left_navigation_bar(String buttonName) {
+        WebElement button = findLeftNavBarButtonByName(buttonName);
         button.click();
     }
 
-    @When("Select {string} from dropdown from {string} navigation bar button")
-    public void select_from_dropdown_from_navigation_bar_button(String furnitureCategoryName, String roomCategoryName) {
-        WebElement roomCategory = findNavBarButtonByName(roomCategoryName);
+    @When("Select {string} from dropdown from {string} left navigation bar button")
+    public void select_from_dropdown_from_left_navigation_bar_button(String furnitureCategoryName, String roomCategoryName) {
+        WebElement roomCategory = findLeftNavBarButtonByName(roomCategoryName);
         String furnitureCategoryXPath = ".//a[contains(text(),'"+furnitureCategoryName+"')]";
         WebElement furnitureCategory = roomCategory.findElement(By.xpath(furnitureCategoryXPath));
         furnitureCategory.click();
+    }
+
+    @When("Click {string} button from right navigation bar")
+    public void click_button_from_right_navigation_bar(String buttonName) {
+        WebElement button = findRightNavBarButtonByName(buttonName);
+        button.click();
     }
 
     @When("Wait {int} milliseconds")
@@ -100,8 +106,14 @@ public class Steps {
         driver.close();
     }
 
-    private WebElement findNavBarButtonByName(String name){
+    private WebElement findLeftNavBarButtonByName(String name){
         String buttonXPath =  "/html/body/div[2]/nav[2]/div[2]/ul/li[a[contains(text(),'"+name+"')]]";
         return driver.findElement(By.xpath(buttonXPath));
     }
+
+    private WebElement findRightNavBarButtonByName(String name){
+        String buttonXPath =  "/html/body/div[2]/nav[2]/div[3]/ul/li[a[contains(text(),'"+name+"')]]";
+        return driver.findElement(By.xpath(buttonXPath));
+    }
+
 }
