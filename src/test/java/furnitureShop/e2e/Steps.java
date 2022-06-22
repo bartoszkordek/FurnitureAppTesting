@@ -79,7 +79,7 @@ public class Steps {
 
     @When("Click on left top corner Icon")
     public void click_on_left_top_corner_Icon() {
-        String iconXPath = "/html/body/div[2]/nav[1]/a";
+        String iconXPath = "/html/body/div[@class='container-fluid']/nav[1]/a";
         WebElement icon = driver.findElement(By.xpath(iconXPath));
         icon.click();
     }
