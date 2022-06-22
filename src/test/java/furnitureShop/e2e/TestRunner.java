@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty"},
         features = "src/test/resources",
         glue = {"furnitureShop/e2e"},
-        tags = "@SmokeTest"
+        tags = "@E2E and @SmokeTest"
 )
 public class TestRunner {
 }

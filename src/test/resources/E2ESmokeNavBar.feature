@@ -1,4 +1,4 @@
-Feature: Furniture Shop Smoke Tests
+Feature: Furniture Shop Nav Bar Smoke Tests
 
   Background:
     Given Set page load timeout to 90 seconds
@@ -6,12 +6,6 @@ Feature: Furniture Shop Smoke Tests
     And Delete all cookies
     And Navigate to Furniture Shop site "http://projectfurnitureshopmd.000webhostapp.com"
 
-  @E2E @SmokeTest
-  Scenario: Search random product using search bar
-    When Type "Szafa" in search bar
-    And Click search button
-    And Wait 2000 milliseconds
-    Then Displayed text is "Wynik wyszukiwania dla: Szafa"
 
   @E2E @SmokeTest
   Scenario: Select kitchen chairs from navigation bar
