@@ -66,7 +66,7 @@ public class Steps {
     @When("Select {string} from dropdown from {string} navigation bar button")
     public void select_from_dropdown_from_navigation_bar_button(String furnitureCategoryName, String roomCategoryName) {
         WebElement roomCategory = findNavBarButtonByName(roomCategoryName);
-        String furnitureCategoryXPath = "//a[contains(text(),'"+furnitureCategoryName+"')]";
+        String furnitureCategoryXPath = ".//a[contains(text(),'"+furnitureCategoryName+"')]";
         WebElement furnitureCategory = roomCategory.findElement(By.xpath(furnitureCategoryXPath));
         furnitureCategory.click();
     }
@@ -79,8 +79,20 @@ public class Steps {
     @Then("Displayed text is {string}")
     public void displayed_text_is(String expectedText) {
         String textXPath = "/html/body/div[1]/div[2]/div[1]/div/div/h25";
-        WebElement text = driver.findElement(By.xpath(textXPath));
-        Assertions.assertEquals(expectedText, text.getText());
+        WebElement textElement = driver.findElement(By.xpath(textXPath));
+        Assertions.assertEquals(expectedText, textElement.getText());
+    }
+
+    @Then("Displayed room and category text is {string}")
+    public void displayed_room_and_category_text_is(String expectedText) {
+        String textXPath = "/html/body/div[1]/div[2]/div/div/h67";
+        WebElement textElement = driver.findElement(By.xpath(textXPath));
+        Assertions.assertTrue(textElement.getText().contains(expectedText));
+    }
+
+    @Then("Url is {string}")
+    public void url_is(String expectedUrl) {
+        Assertions.assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
 
     @After
@@ -89,7 +101,7 @@ public class Steps {
     }
 
     private WebElement findNavBarButtonByName(String name){
-        String buttonXPath =  "/html/body/div[2]/nav[2]/div[2]/ul/li/a[contains(text(),'"+name+"')]";
+        String buttonXPath =  "/html/body/div[2]/nav[2]/div[2]/ul/li[a[contains(text(),'"+name+"')]]";
         return driver.findElement(By.xpath(buttonXPath));
     }
 }
