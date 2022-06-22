@@ -77,6 +77,14 @@ public class Steps {
         button.click();
     }
 
+    @When("Click on left top corner Icon")
+    public void click_on_left_top_corner_Icon() {
+        String iconXPath = "/html/body/div[2]/nav[1]/a";
+        WebElement icon = driver.findElement(By.xpath(iconXPath));
+        icon.click();
+    }
+
+
     @When("Wait {int} milliseconds")
     public void wait_milliseconds(Integer time) throws InterruptedException {
         Thread.sleep(time);
