@@ -14,3 +14,10 @@ Feature: Furniture Shop Login Smoke Tests
     And Wait till login form is loaded
     Then Displayed room and category text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
+    When Provide email "wrong.email@test.com" in login form
+    And Provide password "WrongPassword!" in login form
+    And Click Login Submit button
+    And Wait 2000 milliseconds
+    Then Login message is "Nieprawidłowy email lub hasło!"
+
+

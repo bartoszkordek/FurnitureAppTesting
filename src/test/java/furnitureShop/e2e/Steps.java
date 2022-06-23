@@ -108,8 +108,27 @@ public class Steps {
     @When("Wait till login form is loaded")
     public void wait_till_login_form_is_loaded() {
         WebDriverWait wait = new WebDriverWait(driver, 6);
-        By item = By.className("login");
-        wait.until(ExpectedConditions.presenceOfElementLocated(item));
+        By loginForm = By.className("login");
+        wait.until(ExpectedConditions.presenceOfElementLocated(loginForm));
+    }
+
+    @When("Provide email {string} in login form")
+    public void provide_email_in_login_form(String email) {
+        WebElement usernameBox = driver.findElement(By.id("username"));
+        usernameBox.sendKeys(email);
+    }
+
+    @When("Provide password {string} in login form")
+    public void provide_password_in_login_form(String password) {
+        WebElement passwordBox = driver.findElement(By.id("password"));
+        passwordBox.sendKeys(password);
+    }
+
+    @When("Click Login Submit button")
+    public void click_Login_Submit_button() {
+        String loginSubmitCssSelector = "input[value='Zaloguj się']";
+        WebElement loginSubmitElement = driver.findElement(By.cssSelector(loginSubmitCssSelector));
+        loginSubmitElement.click();
     }
 
     @Then("Displayed text is {string}")
@@ -136,6 +155,14 @@ public class Steps {
        String messageXPath = "/html/body/div[1]/div[3]/div/div/h45";
        WebElement messageElement = driver.findElement(By.xpath(messageXPath));
        Assertions.assertEquals(expectedMessage, messageElement.getText());
+    }
+    ///   /html/body/div[1]/div[4]/span
+
+    @Then("Login message is {string}")
+    public void login_message_is(String expectedLoginMessage) {
+        String loginMessageXPath = "/html/body/div[1]/div[4]/span";
+        WebElement loginMessageElement = driver.findElement(By.xpath(loginMessageXPath));
+        Assertions.assertEquals(expectedLoginMessage, loginMessageElement.getText());
     }
 
     @After
