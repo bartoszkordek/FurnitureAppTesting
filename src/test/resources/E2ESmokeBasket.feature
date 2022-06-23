@@ -9,7 +9,7 @@ Feature: Furniture Shop Basket Smoke Tests
 
   @E2E @SmokeTest
   Scenario: Open basket
-    When Click Basket button
+    When Click "Koszyk" button
     And Wait 2000 milliseconds
     Then Displayed room and category text is "Informacje o koszyku"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/wyswietlanie_koszyka.php"

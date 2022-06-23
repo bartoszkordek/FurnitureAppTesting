@@ -10,6 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -84,16 +86,30 @@ public class Steps {
         icon.click();
     }
 
-    @When("Click Basket button")
-    public void click_Basket_button() {
-        String basketCssSelector = "i[title='Koszyk']";
+    @When("Click {string} button")
+    public void click_button(String buttonName) {
+        String basketCssSelector = "i[title='"+buttonName+"']";
         WebElement basketElement = driver.findElement(By.cssSelector(basketCssSelector));
         basketElement.click();
+    }
+
+    @When("Click Login button")
+    public void click_Login_button() {
+        String loginButtonXPath = "/html/body/div[2]/nav[1]/div[2]/ul/li[3]/a";
+        WebElement loginButton = driver.findElement(By.xpath(loginButtonXPath));
+        loginButton.click();
     }
 
     @When("Wait {int} milliseconds")
     public void wait_milliseconds(Integer time) throws InterruptedException {
         Thread.sleep(time);
+    }
+
+    @When("Wait till login form is loaded")
+    public void wait_till_login_form_is_loaded() {
+        WebDriverWait wait = new WebDriverWait(driver, 6);
+        By item = By.className("login");
+        wait.until(ExpectedConditions.presenceOfElementLocated(item));
     }
 
     @Then("Displayed text is {string}")
