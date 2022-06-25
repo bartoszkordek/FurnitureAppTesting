@@ -236,6 +236,13 @@ public class Steps {
         Assertions.assertEquals(expectedMessage, errorMessageElement.getText());
     }
 
+    @Then("Already existed error message is {string}")
+    public void already_existed_error_message_is(String expectedMessage) {
+        String errorMessageXPath = "/html/body/div[1]/div[3]/div/form/div[1]";
+        WebElement errorMessageElement = driver.findElement(By.xpath(errorMessageXPath));
+        Assertions.assertEquals(expectedMessage, errorMessageElement.getText());
+    }
+
     @After
     public void close_driver(){
         driver.close();
