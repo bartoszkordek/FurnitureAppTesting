@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.safari.SafariDriver;
@@ -100,6 +101,13 @@ public class Steps {
         loginButton.click();
     }
 
+    @When("Click Register button")
+    public void click_Register_button() {
+        String registerButtonXPath = "/html/body/div[2]/nav[1]/div[2]/ul/li[2]/a";
+        WebElement registerButton = driver.findElement(By.xpath(registerButtonXPath));
+        registerButton.click();
+    }
+
     @When("Wait {int} milliseconds")
     public void wait_milliseconds(Integer time) throws InterruptedException {
         Thread.sleep(time);
@@ -109,6 +117,13 @@ public class Steps {
     public void wait_till_login_form_is_loaded() {
         WebDriverWait wait = new WebDriverWait(driver, 6);
         By loginForm = By.className("login");
+        wait.until(ExpectedConditions.presenceOfElementLocated(loginForm));
+    }
+
+    @When("Wait till register form is loaded")
+    public void wait_till_register_form_is_loaded() {
+        WebDriverWait wait = new WebDriverWait(driver, 6);
+        By loginForm = By.className("login2");
         wait.until(ExpectedConditions.presenceOfElementLocated(loginForm));
     }
 
@@ -129,6 +144,49 @@ public class Steps {
         String loginSubmitCssSelector = "input[value='Zaloguj się']";
         WebElement loginSubmitElement = driver.findElement(By.cssSelector(loginSubmitCssSelector));
         loginSubmitElement.click();
+    }
+
+    @When("Provide name {string} in register form")
+    public void provide_name_in_register_form(String name) {
+        String nameBoxXPath = "/html/body/div[1]/div[3]/div/form/input[@name='nick']";
+        WebElement nameElement = driver.findElement(By.xpath(nameBoxXPath));
+        nameElement.sendKeys(name);
+    }
+
+    @When("Provide email {string} in register form")
+    public void provide_email_in_register_form(String email) {
+        String emailBoxXPath = "/html/body/div[1]/div[3]/div/form/input[@name='email']";
+        WebElement emailElement = driver.findElement(By.xpath(emailBoxXPath));
+        emailElement.sendKeys(email);
+    }
+
+    @When("Provide password {string} in register form")
+    public void provide_password_in_register_form(String password) {
+        String passwordBoxXPath = "/html/body/div[1]/div[3]/div/form/input[@name='haslo1']";
+        WebElement passwordElement = driver.findElement(By.xpath(passwordBoxXPath));
+        passwordElement.sendKeys(password);
+    }
+
+    @When("Provide repeated password {string} in register form and click Enter")
+    public void provide_repeated_password_in_register_form_and_click_Enter(String password) {
+        String passwordBoxXPath = "/html/body/div[1]/div[3]/div/form/input[@name='haslo2']";
+        WebElement passwordElement = driver.findElement(By.xpath(passwordBoxXPath));
+        passwordElement.sendKeys(password);
+        passwordElement.sendKeys(Keys.RETURN);
+    }
+
+    @When("Click Accept regulations checkbox in register form")
+    public void click_Accept_regulations_checkbox_in_register_form() {
+        String acceptRegulationsCheckBoxXPath = "/html/body/div[1]/div[3]/div/form/div/input";
+        WebElement acceptRegulationsCheckBoxElement = driver.findElement(By.xpath(acceptRegulationsCheckBoxXPath));
+        acceptRegulationsCheckBoxElement.click();
+    }
+
+    @Then("Accept regulations checkbox in register form is clicked")
+    public void accept_regulations_checkbox_in_register_form_is_clicked() {
+        String acceptRegulationsCheckBoxXPath = "/html/body/div[1]/div[3]/div/form/div/input";
+        WebElement acceptRegulationsCheckBoxElement = driver.findElement(By.xpath(acceptRegulationsCheckBoxXPath));
+        Assertions.assertTrue(acceptRegulationsCheckBoxElement.isEnabled());
     }
 
     @Then("Displayed search text is {string}")
@@ -162,6 +220,13 @@ public class Steps {
         String loginMessageXPath = "/html/body/div[1]/div[4]/span";
         WebElement loginMessageElement = driver.findElement(By.xpath(loginMessageXPath));
         Assertions.assertEquals(expectedLoginMessage, loginMessageElement.getText());
+    }
+
+    @Then("Mismatch password error message is {string}")
+    public void mismatch_password_error_message_is(String expectedMessage) {
+        String errorMessageXPath = "/html/body/div[1]/div[3]/div/form/div[1]";
+        WebElement errorMessageElement = driver.findElement(By.xpath(errorMessageXPath));
+        Assertions.assertEquals(expectedMessage, errorMessageElement.getText());
     }
 
     @After
