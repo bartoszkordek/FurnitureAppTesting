@@ -22,3 +22,79 @@ Feature: Furniture Shop Register Smoke Tests
     And Wait 2000 milliseconds
     Then Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
     And Mismatch password error message is "Podane hasła nie są identyczne"
+
+  @E2E @SmokeTest
+  Scenario: Main getting form scenario - Invalid register - missing name
+    When Click Register button
+    And Wait 1000 milliseconds
+    And Wait till register form is loaded
+    Then Displayed header text is "Rejestracja"
+    And Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+    When Provide email "sample.email@missing.name.test.com" in register form
+    And Provide password "SamplePassword!" in register form
+    And Click Accept regulations checkbox in register form
+    Then Accept regulations checkbox in register form is clicked
+    When Provide repeated password "SamplePassword!" in register form and click Enter
+    And Wait 2000 milliseconds
+    Then Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+
+  @E2E @SmokeTest
+  Scenario: Main getting form scenario - Invalid register - missing email
+    When Click Register button
+    And Wait 1000 milliseconds
+    And Wait till register form is loaded
+    Then Displayed header text is "Rejestracja"
+    And Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+    When Provide name "John" in register form
+    And Provide password "SamplePassword!" in register form
+    And Click Accept regulations checkbox in register form
+    Then Accept regulations checkbox in register form is clicked
+    When Provide repeated password "SamplePassword!" in register form and click Enter
+    And Wait 2000 milliseconds
+    Then Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+
+  @E2E @SmokeTest
+  Scenario: Main getting form scenario - Invalid register - missing first password
+    When Click Register button
+    And Wait 1000 milliseconds
+    And Wait till register form is loaded
+    Then Displayed header text is "Rejestracja"
+    And Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+    When Provide name "John" in register form
+    And Provide email "sample.email@missing.first.password.test.com" in register form
+    And Click Accept regulations checkbox in register form
+    Then Accept regulations checkbox in register form is clicked
+    When Provide repeated password "SamplePassword!" in register form and click Enter
+    And Wait 2000 milliseconds
+    Then Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+
+  @E2E @SmokeTest
+  Scenario: Main getting form scenario - Invalid register - missing repeated password
+    When Click Register button
+    And Wait 1000 milliseconds
+    And Wait till register form is loaded
+    Then Displayed header text is "Rejestracja"
+    And Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+    When Provide name "John" in register form
+    And Provide email "sample.email@missing.repeated.password.test.com" in register form
+    And Provide password "SamplePassword!" in register form
+    And Click Accept regulations checkbox in register form
+    Then Accept regulations checkbox in register form is clicked
+    When Provide repeated password "" in register form and click Enter
+    And Wait 2000 milliseconds
+    Then Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+
+  @E2E @SmokeTest
+  Scenario: Main getting form scenario - Invalid register - missing clicked Accept regulations checkbox
+    When Click Register button
+    And Wait 1000 milliseconds
+    And Wait till register form is loaded
+    Then Displayed header text is "Rejestracja"
+    And Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"
+    When Provide name "John" in register form
+    And Provide email "sample.email@missing.accept.regulations.checkbox.test.com" in register form
+    And Provide password "SamplePassword!" in register form
+    Then Accept regulations checkbox in register form is not clicked
+    When Provide repeated password "SamplePassword!" in register form and click Enter
+    And Wait 2000 milliseconds
+    Then Url is "http://projectfurnitureshopmd.000webhostapp.com/rejestracja.php"

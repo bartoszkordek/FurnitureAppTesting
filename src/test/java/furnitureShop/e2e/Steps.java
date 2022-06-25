@@ -186,7 +186,14 @@ public class Steps {
     public void accept_regulations_checkbox_in_register_form_is_clicked() {
         String acceptRegulationsCheckBoxXPath = "/html/body/div[1]/div[3]/div/form/div/input";
         WebElement acceptRegulationsCheckBoxElement = driver.findElement(By.xpath(acceptRegulationsCheckBoxXPath));
-        Assertions.assertTrue(acceptRegulationsCheckBoxElement.isEnabled());
+        Assertions.assertTrue(acceptRegulationsCheckBoxElement.isSelected());
+    }
+
+    @Then("Accept regulations checkbox in register form is not clicked")
+    public void accept_regulations_checkbox_in_register_form_is_not_clicked() {
+        String acceptRegulationsCheckBoxXPath = "/html/body/div[1]/div[3]/div/form/div/input";
+        WebElement acceptRegulationsCheckBoxElement = driver.findElement(By.xpath(acceptRegulationsCheckBoxXPath));
+        Assertions.assertFalse(acceptRegulationsCheckBoxElement.isSelected());
     }
 
     @Then("Displayed search text is {string}")
