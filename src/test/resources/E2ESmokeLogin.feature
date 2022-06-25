@@ -12,7 +12,7 @@ Feature: Furniture Shop Login Smoke Tests
     When Click Login button
     And Wait 2000 milliseconds
     And Wait till login form is loaded
-    Then Displayed room and category text is "Logowanie"
+    Then Displayed header text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
     When Provide email "wrong.email@test.com" in login form
     And Provide password "WrongPassword!" in login form
@@ -25,7 +25,7 @@ Feature: Furniture Shop Login Smoke Tests
     When Click Login button
     And Wait 2000 milliseconds
     And Wait till login form is loaded
-    Then Displayed room and category text is "Logowanie"
+    Then Displayed header text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
     When Provide password "WrongPassword!" in login form
     And Click Login Submit button
@@ -37,7 +37,7 @@ Feature: Furniture Shop Login Smoke Tests
     When Click Login button
     And Wait 2000 milliseconds
     And Wait till login form is loaded
-    Then Displayed room and category text is "Logowanie"
+    Then Displayed header text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
     When Provide email "wrong.email@test.com" in login form
     And Click Login Submit button

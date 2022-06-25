@@ -11,6 +11,6 @@ Feature: Furniture Shop Basket Smoke Tests
   Scenario: Open basket
     When Click "Koszyk" button
     And Wait 2000 milliseconds
-    Then Displayed room and category text is "Informacje o koszyku"
+    Then Displayed header text is "Informacje o koszyku"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/wyswietlanie_koszyka.php"
     And Message is "Musisz być zalogowanym, aby wyświetlić zawartość koszyka."

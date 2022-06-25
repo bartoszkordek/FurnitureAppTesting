@@ -131,15 +131,15 @@ public class Steps {
         loginSubmitElement.click();
     }
 
-    @Then("Displayed text is {string}")
-    public void displayed_text_is(String expectedText) {
+    @Then("Displayed search text is {string}")
+    public void displayed_search_text_is(String expectedText) {
         String textXPath = "/html/body/div[1]/div[2]/div[1]/div/div/h25";
         WebElement textElement = driver.findElement(By.xpath(textXPath));
         Assertions.assertEquals(expectedText, textElement.getText());
     }
 
-    @Then("Displayed room and category text is {string}")
-    public void displayed_room_and_category_text_is(String expectedText) {
+    @Then("Displayed header text is {string}")
+    public void displayed_header_text_is(String expectedText) {
         String textXPath = "/html/body/div[1]/div[2]/div/div/h67";
         WebElement textElement = driver.findElement(By.xpath(textXPath));
         Assertions.assertTrue(textElement.getText().contains(expectedText));
@@ -156,7 +156,6 @@ public class Steps {
        WebElement messageElement = driver.findElement(By.xpath(messageXPath));
        Assertions.assertEquals(expectedMessage, messageElement.getText());
     }
-    ///   /html/body/div[1]/div[4]/span
 
     @Then("Login message is {string}")
     public void login_message_is(String expectedLoginMessage) {

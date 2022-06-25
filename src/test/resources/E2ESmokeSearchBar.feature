@@ -11,4 +11,4 @@ Feature: Furniture Shop Search Bar Smoke Tests
     When Type "Szafa" in search bar
     And Click search button
     And Wait 2000 milliseconds
-    Then Displayed text is "Wynik wyszukiwania dla: Szafa"
+    Then Displayed search text is "Wynik wyszukiwania dla: Szafa"
