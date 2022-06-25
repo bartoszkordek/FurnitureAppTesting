@@ -10,7 +10,7 @@ Feature: Furniture Shop Login Smoke Tests
   @E2E @SmokeTest
   Scenario: Invalid login - invalid credentials
     When Click Login button
-    And Wait 2000 milliseconds
+    And Wait 1000 milliseconds
     And Wait till login form is loaded
     Then Displayed header text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
@@ -23,7 +23,7 @@ Feature: Furniture Shop Login Smoke Tests
   @E2E @SmokeTest
   Scenario: Invalid login - missing email
     When Click Login button
-    And Wait 2000 milliseconds
+    And Wait 1000 milliseconds
     And Wait till login form is loaded
     Then Displayed header text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
@@ -35,7 +35,7 @@ Feature: Furniture Shop Login Smoke Tests
   @E2E @SmokeTest
   Scenario: Invalid login - missing password
     When Click Login button
-    And Wait 2000 milliseconds
+    And Wait 1000 milliseconds
     And Wait till login form is loaded
     Then Displayed header text is "Logowanie"
     And Url is "http://projectfurnitureshopmd.000webhostapp.com/logowanie.php"
