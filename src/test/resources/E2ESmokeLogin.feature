@@ -61,4 +61,3 @@ Feature: Furniture Shop Login Smoke Tests
     And Option 1 after being login is "Status zamówienia produktów"
     And Option 2 after being login is "Przejdź do koszyka"
     And Option 3 after being login is "Przejdź do sklepu"
-

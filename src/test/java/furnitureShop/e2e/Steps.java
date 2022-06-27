@@ -257,24 +257,9 @@ public class Steps {
 
     @Then("Option {int} after being login is {string}")
     public void option_after_being_login_is(Integer no, String expectedName) {
-        switch (no){
-            case 1:
-                String option1XPath = "/html/body/div[1]/div[2]/div/h5/div/div[1]/div/a";
-                WebElement option1Element = driver.findElement(By.xpath(option1XPath));
-                Assertions.assertEquals(expectedName, option1Element.getText());
-                break;
-            case 2:
-                String option2XPath = "/html/body/div[1]/div[2]/div/h5/div/div[2]/div/a";
-                WebElement option2Element = driver.findElement(By.xpath(option2XPath));
-                Assertions.assertEquals(expectedName, option2Element.getText());
-                break;
-            case 3:
-                String option3XPath = "/html/body/div[1]/div[2]/div/h5/div/div[3]/div/a";
-                WebElement option3Element = driver.findElement(By.xpath(option3XPath));
-                Assertions.assertEquals(expectedName, option3Element.getText());
-                break;
-        }
-
+        String optionXPath = "/html/body/div[1]/div[2]/div/h5/div/div[" + no +"]/div/a";
+        WebElement optionElement = driver.findElement(By.xpath(optionXPath));
+        Assertions.assertEquals(expectedName, optionElement.getText());
     }
 
     @After
